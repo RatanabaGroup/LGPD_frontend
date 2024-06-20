@@ -15,16 +15,16 @@ function App() {
       { loading ? 
         <h2>Loading...</h2> 
       : 
-        <>{ user ? <MaisInformacoes /> : <Auth />}</> }
+        <>{ user ? <Router>
+            <Routes>
+             <Route path="/" element={<VerPerfil />} />
+              <Route path="/maisInformacoes" element={<MaisInformacoes />} />
+             </Routes>
+          </Router> : <Router>  <Routes>
+            <Route path="/" element={<Auth />} /></Routes>
+            </Router>}</> }
     </div>
-  );
-    // <Router>
-    //   <Routes>
-    //     <Route path="/" element={<Cadastrar />} />
-    //     <Route path="/verPerfil/:userId" element={<VerPerfil />} />
-    //     <Route path="/maisInformacoes/:userId" element={<MaisInformacoes />} />
-    //   </Routes>
-    // </Router>
+  ); 
 }
 
 export default App;

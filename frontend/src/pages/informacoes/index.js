@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import  React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
 import './index.css';
+import { useUserContext } from "../../context/userContext";
+import { useNavigate } from 'react-router-dom';
 
 const MaisInformacoes = () => {
-    const { userId } = useParams(); 
+    const [userId, setUserId] = useState("")
     const [dataNascimento, setDataNascimento] = useState("");
     const [telefone, setTelefone] = useState("");
     const [cep, setCep] = useState("");
@@ -16,11 +17,14 @@ const MaisInformacoes = () => {
     const [complemento, setComplemento] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
     const [successMessage, setSuccessMessage] = useState("");
+    const { user, logoutUser } = useUserContext();
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.put(`http://localhost:3000/usuario/atualizar/${userId}`, {
+            const response = await axios.put(`http://localhost:3000/usuario/atualizar`, {
+                email: user.email,
                 dataNascimento: dataNascimento,
                 telefone: telefone,
                 endereco: {
@@ -33,6 +37,7 @@ const MaisInformacoes = () => {
                     complemento: complemento
                 }
             });
+            setUserId(response.data.data)
             if (response.status === 200) {
                 setSuccessMessage("Informações atualizadas com sucesso!");
                 setErrorMessage("");
@@ -45,6 +50,7 @@ const MaisInformacoes = () => {
                 setCidade("");
                 setEstado("");
                 setComplemento("");
+                navigate(`/`); 
             }
         } catch (error) {
             setErrorMessage("Erro ao atualizar informações. Tente novamente.");
@@ -138,7 +144,7 @@ const MaisInformacoes = () => {
                         onChange={(e) => setComplemento(e.target.value)} 
                     />
                 </label>
-                <button type="submit">Atualizar Informações</button>
+                <button type="submit" >Atualizar Informações</button>
             </form>
         </div>
     );

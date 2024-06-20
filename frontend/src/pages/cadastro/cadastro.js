@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useUserContext } from "../../context/userContext";
 import logo2 from "../../assets/logocompleta.png";
 import './index.css';
@@ -13,7 +13,7 @@ const Cadastrar = () => {
     const { registerUser } = useUserContext();
     const [errorMessage, setErrorMessage] = useState("");
     const [successMessage, setSuccessMessage] = useState("");
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -26,7 +26,6 @@ const Cadastrar = () => {
             const response = await axios.post('http://localhost:3000/usuario/cadastro', {
                 nome: nome,
                 email: email,
-                senha: senha,
                 termo: termo
             });
 
@@ -37,7 +36,7 @@ const Cadastrar = () => {
                 setEmail("");
                 setSenha("");
                 setTermo(false);
-                // navigate(`/maisInformacoes`); //id do usuario logado
+                navigate(`/maisInformacoes`); 
             }
         } catch (error) {
             console.log(error)

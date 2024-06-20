@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from "react";
+import axios from 'axios';
 
 import {
   signInWithEmailAndPassword, createUserWithEmailAndPassword,
@@ -79,22 +80,29 @@ export const UserContextProvider = ({ children }) => {
   const signInWithGoogle = () => {
     setLoading(true);
     signInWithPopup(auth, new GoogleAuthProvider())
-      .then((res) => {
+      .then(async (res) => {
         toast.success("Login realizado com Google com sucesso!");
-        console.log(res);
+        const response = await axios.post('http://localhost:3000/usuario/cadastro', {
+          nome: res.user.displayName,
+          email: res.user.email
+      });
       })
       .catch((err) => {
         toast.error(err.message);
       })
-      .finally(() => setLoading(false));
+      .finally(() => setLoading(false)
+    );
   };
 
   const signInWithGithub = () => {
     setLoading(true);
     signInWithPopup(auth, new GithubAuthProvider())
-      .then((res) => {
+      .then(async (res) => {
         toast.success("Login realizado com GitHub com sucesso!");
-        console.log(res);
+        const response = await axios.post('http://localhost:3000/usuario/cadastro', {
+          nome: res.user.displayName,
+          email: res.user.email
+      });
       })
       .catch((err) => {
         toast.error(err.message);
@@ -106,14 +114,13 @@ export const UserContextProvider = ({ children }) => {
     signOut(auth);
   };
 
-  const forgotPassword = (email) => {
-    return sendPasswordResetEmail(auth, email)
-      .then(() => {
-        toast.success("E-mail de redefinição de senha enviado com sucesso!");
-      })
-      .catch((err) => {
-        toast.error(err.message);
-      });
+  const forgotPassword = async (email) => {
+    try {
+      await sendPasswordResetEmail(auth, email);
+      toast.success("E-mail de redefinição de senha enviado com sucesso!");
+    } catch (err) {
+      toast.error(err.message);
+    }
   };
 
   const contextValue = {
