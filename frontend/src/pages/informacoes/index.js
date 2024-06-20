@@ -65,86 +65,70 @@ const MaisInformacoes = () => {
                 {errorMessage && <p className="error-message">{errorMessage}</p>}
                 {successMessage && <p className="success-message">{successMessage}</p>}
                 <label>
-                    Data de Nascimento:
+                    Data de Nascimento
+                </label>
                     <input 
                         type="date" 
                         value={dataNascimento} 
                         onChange={(e) => setDataNascimento(e.target.value)} 
                         required 
                     />
-                </label>
-                <label>
-                    Telefone:
                     <input 
+                        placeholder="Telefone"
                         type="tel" 
                         value={telefone} 
                         onChange={(e) => setTelefone(e.target.value)} 
                         required 
                     />
-                </label>
-                <label>
-                    CEP:
                     <input 
+                        placeholder="CEP"
                         type="text" 
                         value={cep} 
                         onChange={(e) => setCep(e.target.value)} 
                         required 
                     />
-                </label>
-                <label>
-                    Logradouro:
                     <input 
+                        placeholder="Logradouro"
                         type="text" 
                         value={logradouro} 
                         onChange={(e) => setLogradouro(e.target.value)} 
                         required 
                     />
-                </label>
-                <label>
-                    Número:
                     <input 
+                        placeholder="Número"
                         type="text" 
                         value={numero} 
                         onChange={(e) => setNumero(e.target.value)} 
                         required 
                     />
-                </label>
-                <label>
-                    Bairro:
                     <input 
+                        placeholder="Bairro"
                         type="text" 
                         value={bairro} 
                         onChange={(e) => setBairro(e.target.value)} 
                         required 
                     />
-                </label>
-                <label>
-                    Cidade:
                     <input 
+                        placeholder="Cidade"
                         type="text" 
                         value={cidade} 
                         onChange={(e) => setCidade(e.target.value)} 
                         required 
                     />
-                </label>
-                <label>
-                    Estado:
                     <input 
+                        placeholder="Estado"
                         type="text" 
                         value={estado} 
                         onChange={(e) => setEstado(e.target.value)} 
                         required 
                     />
-                </label>
-                <label>
-                    Complemento (opcional):
                     <input 
+                        placeholder="Complemento (opcional)"
                         type="text" 
                         value={complemento} 
                         onChange={(e) => setComplemento(e.target.value)} 
                     />
-                </label>
-                <button type="submit" >Atualizar Informações</button>
+                <button className='content_button save' type="submit" >Atualizar Informações</button>
             </form>
         </div>
     );

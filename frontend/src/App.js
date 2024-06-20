@@ -13,7 +13,7 @@ function App() {
   return (
     <div className="App">
       { loading ? 
-        <h2>Loading...</h2> 
+        <h2 className='carregando'>Carregando...</h2> 
       : 
         <>{ user ? <Router>
             <Routes>

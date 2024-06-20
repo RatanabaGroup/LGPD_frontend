@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useUserContext } from "../../context/userContext";
 import logo2 from "../../assets/logocompleta.png";
-import './index.css';
+import { toast } from "react-toastify";
 
 const Cadastrar = () => {
     const [nome, setNome] = useState("");
@@ -47,16 +47,14 @@ const Cadastrar = () => {
 
     return (
         <div className="container-center">
-            <div className="sign">
+            <div className="content">
                 <img src={logo2} alt="Logo Ratanaba" />
                 <form className="register-form" onSubmit={handleSubmit}>
                     <h1>Cadastrar</h1>
                     {errorMessage && <p className="error-message">{errorMessage}</p>}
                     {successMessage && <p className="success-message">{successMessage}</p>}
-                    <label>
-                        Nome:
-                    </label>
                     <input
+                        placeholder="Nome"
                         type="text"
                         name="nome"
                         value={nome}
@@ -64,10 +62,8 @@ const Cadastrar = () => {
                         required
                     />
 
-                    <label>
-                        Email:
-                    </label>
                     <input
+                        placeholder="Email"
                         type="email"
                         name="email"
                         value={email}
@@ -75,16 +71,15 @@ const Cadastrar = () => {
                         required
                     />
 
-                    <label>
-                        Senha:
-                    </label>
                     <input
+                        placeholder="Senha"
                         type="password"
                         name="senha"
                         value={senha}
                         onChange={(e) => setSenha(e.target.value)}
                         required
                     />
+
                     <label className='termo'>
                         <input
                            className='checkbox'
@@ -96,7 +91,8 @@ const Cadastrar = () => {
                         />
                         <p>Aceito os termos e condições</p>
                     </label>
-                    <button className='sign_button' type="submit">Cadastrar</button>
+                    
+                    <button className='content_button save' type="submit">Cadastrar</button>
                 </form>
             </div>
         </div>

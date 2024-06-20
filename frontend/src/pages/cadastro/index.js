@@ -1,8 +1,6 @@
 import { useRef } from "react";
 import { useUserContext } from "../../context/userContext";
 import logo2 from "../../assets/logocompleta.png";
-import "./index.css";
-import { toast } from "react-toastify";
 
 export default function Signin() {
   const emailRef = useRef();
@@ -26,14 +24,14 @@ export default function Signin() {
 
   return (
     <div className="container-center">
-      <div className="sign">
+      <div className="content">
         <img src={logo2} alt="Logo Ratanaba" />
 
         <form onSubmit={onSubmit}>
           <h1>Login</h1>
           <input type="email" placeholder="Email" ref={emailRef} />
           <input type="password" placeholder="Senha" ref={psdRef} />
-          <button className='sign_button' type="submit">Entrar</button>
+          <button className='content_button save' type="submit">Entrar</button>
 
           <a onClick={forgotPasswordHandler}>Esqueci minha senha</a>
         </form>

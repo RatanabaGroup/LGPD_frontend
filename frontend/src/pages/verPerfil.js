@@ -36,9 +36,9 @@ const VerPerfil = () => {
                 console.error('Erro ao buscar dados do perfil:', error);
             }
         };
-    
-        fetchData(); 
-    },  [user.email]);
+
+        fetchData();
+    }, [user.email]);
 
     const handleUpdate = async () => {
         try {
@@ -74,44 +74,28 @@ const VerPerfil = () => {
         }
     };
     return (
-         <div className="perfil-container">
-            <h1>Perfil</h1>
-            <label>Nome:</label>
-            <input type="text" value={nome} onChange={(e) => setNome(e.target.value)} />
+        <div className="container-center">
+            <div className='content'>
+                <h1>Perfil</h1>
 
-            <label>Email:</label>
-            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                <div className='profile'>
+                    <input type="text" placeholder="Nome" value={nome} onChange={(e) => setNome(e.target.value)} />
+                    <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                    <input type="text" placeholder="Data de Nascimento" value={datanascimento} onChange={(e) => setDatanascimento(e.target.value)} />
+                    <input type="text" placeholder="Telefone" value={telefone} onChange={(e) => setTelefone(e.target.value)} />
+                    <input type="text" placeholder="CEP" value={cep} onChange={(e) => setCep(e.target.value)} />
+                    <input type="text" placeholder="Logradouro" value={logradouro} onChange={(e) => setLogradouro(e.target.value)} />
+                    <input type="text" placeholder="Número" value={numero} onChange={(e) => setNumero(e.target.value)} />
+                    <input type="text" placeholder="Bairro" value={bairro} onChange={(e) => setBairro(e.target.value)} />
+                    <input type="text" placeholder="Cidade" value={cidade} onChange={(e) => setCidade(e.target.value)} />
+                    <input type="text" placeholder="Estado" value={estado} onChange={(e) => setEstado(e.target.value)} />
+                    <input type="text" placeholder="Complemento" value={complemento} onChange={(e) => setComplemento(e.target.value)} />
+                </div>
 
-            <label>Data de Nascimento:</label>
-            <input type="text" value={datanascimento} onChange={(e) => setDatanascimento(e.target.value)} />
-
-            <label>Telefone:</label>
-            <input type="text" value={telefone} onChange={(e) => setTelefone(e.target.value)} />
-
-            <label>CEP:</label>
-            <input type="text" value={cep} onChange={(e) => setCep(e.target.value)} />
-
-            <label>Logradouro:</label>
-            <input type="text" value={logradouro} onChange={(e) => setLogradouro(e.target.value)} />
-
-            <label>Número:</label>
-            <input type="text" value={numero} onChange={(e) => setNumero(e.target.value)} />
-
-            <label>Bairro:</label>
-            <input type="text" value={bairro} onChange={(e) => setBairro(e.target.value)} />
-
-            <label>Cidade:</label>
-            <input type="text" value={cidade} onChange={(e) => setCidade(e.target.value)} />
-
-            <label>Estado:</label>
-            <input type="text" value={estado} onChange={(e) => setEstado(e.target.value)} />
-
-            <label>Complemento:</label>
-            <input type="text" value={complemento} onChange={(e) => setComplemento(e.target.value)} />
-
-            <button onClick={handleUpdate}>Salvar Alterações</button>
-            <button onClick={logoutUser} className='sign_button'>Deslogar</button>
-            <button onClick={handleDelete}>Excluir Perfil</button>
+                <button onClick={handleUpdate} className='content_button save'>Salvar Alterações</button>
+                <button onClick={handleDelete} className='content_button delete'>Excluir Perfil</button>
+                <button onClick={logoutUser} className='content_button logout'>Deslogar</button>
+            </div>
         </div>
     );
 };
